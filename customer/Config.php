@@ -7,7 +7,7 @@
  */
 
 
-$con=mysqli_connect("localhost","root","","bus_booking");
+$con=mysqli_connect("localhost","root","bd13011996","ticketbooking");
 if (mysqli_connect_errno())
 {
     echo "Failed to connect to MySQL: " . mysqli_connect_error();

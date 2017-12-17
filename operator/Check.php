@@ -2,7 +2,8 @@
 <?php
 include('dbConfig.php');
 session_start();
-$user_id=$_SESSION['id'];
+//$user_id=$_SESSION['id'];
+   $op_id=$_SESSION['user_id'];
 $bus_id=$_SESSION['bus_id'];
 $route_id= $_SESSION['route_id'];
 $station_id=$_SESSION['station_id'];
@@ -35,7 +36,7 @@ if($_GET){
     }
 }
 $seats=$d;
-$query9 = $db->query("SELECT * FROM customer WHERE customer_id='$user_id'");
+$query9 = $db->query("SELECT * FROM bus_operator WHERE operator_id='$op_id'");
     $rowCount9 = $query9->num_rows;
     if($rowCount9>0){
     $row9 = $query9->fetch_assoc();
@@ -128,6 +129,49 @@ button{
     outline: none;
     margin: 10px 0 10px 0;}
 </style>
+<style>
+.dropbtn {
+    background-color:white;
+    font-family: fantasy;
+    color: black;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+    font-size:15px ;
+    cursor: pointer;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: white;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {background-color: #2196F3}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown:hover .dropbtn {
+    background-color: white;
+}
+</style>
 <body class="w3-white">
 
 <!-- Navigation bar with social media icons -->
@@ -144,14 +188,25 @@ button{
 						</div>
 						<div class="menu">
 							<ul class="nav nav-tabs" role="tablist">
-                                                            <li role="presentation"><a href="customer.php">Home</a></li>
-								
-                                                                <li role="presentation"><a href="booking.php">Book</a></li>
-                                                                <li role="presentation"><a href="update.php">Update</a></li>
-                                                                <li role="presentation"><a href="bookedTicket.php">My Bookings</a></li>
-                                                                  <li role="presentation"><a href="login.php"  onclick="return confirm('Are you sure to log out?');">Logout</a></li>
-                                                                <li role="presentation"><a href="reomve.php">Deactivate</a></li>
-								<li role="presentation"><a href="contacts.html">Contact</a></li>
+                                                             <li role="presentation" class="active"><a href="operator.php">Home</a></li>
+								<li role="presentation"> <div class="dropdown">
+                                                                    <button class="dropbtn">Update</button>
+                                                                    <div class="dropdown-content">
+    <a href="bus_update.php">Update Bus</a>
+    <a href="update_bus.php">Update Profile</a>
+    <a href="bus_delete.php">Delete Bus</a>
+  </div>
+</div></li>
+                                                                    <li role="presentation"><a href="book.php">Book</a></li>
+                                                                    	
+                                                                    <li role="presentation"><a href="details.php">My Details</a></li>
+                                                                <li role="presentation"><a href="availability.php">Availability</a></li>
+                                                              
+                                  
+                                               
+                                                                <li role="presentation"><a href="Add_Bus.php">Add Bus</a></li>
+                                                                <li role="presentation"><a href="login.php"  onclick="return confirm('Are you sure to log out?');">Logout</a></li>
+                                                               <li role="presentation"><a href="reomve1.php">Deactivate</a></li>
 							</ul>
 						</div>
 					</div>			

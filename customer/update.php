@@ -36,8 +36,9 @@ if(isset($_POST['submit'])){
     $query = "update customer set name='$username',ph_number='$phone' where email='$email '";
     $result = mysqli_query($db,$query);
     if($result) {
-        echo "Succesfully updated";
-         echo '<script>window.location="customer.php"</script>';
+       // echo "Succesfully updated";
+          echo "<script type='text/javascript'>alert('Update Successfull')</script>";
+      echo '<script>window.location="customer.php"</script>';
         
         //header('Location: login.php');
     }
@@ -79,55 +80,43 @@ if(isset($_POST['submit'])){
 	<!--<link rel="stylesheet" href="css/font-awesome.min.css">-->
         <link href="css/style_2.css" rel="stylesheet">	
 <style>
+input[type=text], select {
+    width: 20%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+input[type=int], select {
+    width: 20%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    
+}
+input[type=submit] {
+    width: 20%;
+    background-color: #00bcd4;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
 
-    h1,h2,h3,h4,h5,h6 {font-family: "Oswald"}
-    body {font-family: "Open Sans"}
+input[type=submit]:hover {
+    background-color: #00bcd4;
+}
 
 
-    .select-boxes{width: 280px;text-align: center;}
-    select {
-        background-color: #F5F5F5;
-        border: 1px double #15a6c7;
-        color: #1d93d1;
-        font-family: Georgia;
-        font-weight: bold;
-        font-size: 14px;
-        height: 39px;
-        padding: 7px 8px;
-        width: 250px;
-        outline: none;
-        margin: 10px 0 10px 0;
-    }
-    select option{
-        font-family: Georgia;
-        font-size: 14px;}
-    /*h6{
-        font-size: 14px;
-        height: 39px;
-        width: 250px;
-
-        }*/
-    input{
-        font-family: Georgia;
-        font-weight: bold;
-        font-size: 14px;
-        height: 39px;
-        padding: 7px 8px;
-        width: 250px;
-        outline: none;
-        margin: 10px 0 10px 0;}
-
-    button{
-        font-family: Georgia;
-        font-weight: bold;
-        font-size: 10px;
-        height: 30px;
-        padding: 7px 8px;
-        width: 100px;
-        outline: none;
-        margin: 10px 0 10px 0;}
 </style>
-<body class="w3-blue">
+<body class="w3-white">
 
 <!-- Navigation bar with social media icons -->
 <header>
@@ -142,12 +131,13 @@ if(isset($_POST['submit'])){
 						</div>
 						<div class="menu">
 							<ul class="nav nav-tabs" role="tablist">
-								     <li role="presentation" class="active"><a href="customer.php">Home</a></li>
+								      <li role="presentation" class="active"><a href="customer.php">Home</a></li>
 								
-                                                                <li role="presentation"><a href="booking.php">Book</a></li>
-                                                                <li role="presentation"><a href="update.php">Update</a></li>
+                                                                <li role="presentation"><a href="booking.php">Book Ticket</a></li>
+                                                                <li role="presentation"><a href="update.php">Update Profile</a></li>
                                                                 <li role="presentation"><a href="bookedTicket.php">My Bookings</a></li>
-                                                                <li role="presentation"><a href="blog.html">Logout</a></li>
+                                                                <!--<li role="presentation"><a href="Add_Bus.php">Add Bus</a></li>-->
+                                                                <li role="presentation"><a href="login.php"  onclick="return confirm('Are you sure to log out?');">Logout</a></li>
                                                                 <li role="presentation"><a href="reomve.php">Deactivate</a></li>
 								<li role="presentation"><a href="contacts.html">Contact</a></li>
 							</ul>
@@ -159,12 +149,7 @@ if(isset($_POST['submit'])){
 	</header>
 
      
-    <header class="w3-container w3-center w3-padding-48 w3-white">
-        <h1 class="w3-xxxlarge"><a href="http://www.lisenme.com/"><img src="img/logo_bus.png" alt="Girl Hat" style="width:10%; " class="w3-padding-16"></a></h1>
-        <h6>Welcome to  <span class="w3-tag">BusOn</span></h6>
-
-
-    </header>
+    
 
 
     <!-- Image header -->
@@ -178,10 +163,10 @@ if(isset($_POST['submit'])){
 
             <!-- Blog entry -->
             <!--<div class="w3-container w3-white w3-margin w3-padding-large">-->
-<form method="post" action="update.php">
+            <center><form method="post" action="update.php">
     <div>
         <label>
-            <span style= "font-size: 16px;">  Name:      </span>
+            <span style= "font-size: 16px;">  Name      </span>
         </label>
                     
 
@@ -190,20 +175,23 @@ if(isset($_POST['submit'])){
      <input type="text" name="name"  style="color: black;"value="<?php echo $username;?>">
     <div>
         <label>
-            <span style= "font-size: 16px;">  Email:      </span>
+            <span style= "font-size: 16px;">  Email      </span>
         </label>
         </div>
      <input type="text" name="email" style="color: black;"value="<?php echo $email;?>"readonly>
      <div>
         <label>
-            <span style= "font-size: 16px;"> Phone Number:      </span>            <!--<input type="text" name="name"  style="color: black;"value="<?php echo $phone;?>"><br><br>-->
+            <span style= "font-size: 16px;"> Phone Number     </span>            <!--<input type="text" name="name"  style="color: black;"value="<?php echo $phone;?>"><br><br>-->
         </label>
     </div>
-        <input type="int" name="ph_number" style="color: black;" value="<?php echo $phone?>"><br><br>    
-
+        <input type="int" name="ph_number" style="color: black;" value="<?php echo $phone?>">
+      
+        <div>
+            
+        </div>
     
 
-    <input type="submit" name="submit" style="color: black;" value="Update Details">
-</form>
+    <input type="submit" name="submit" style="color: black;" value="Update Details" onclick="return confirm('Are You Sure  ?');">
+</form></center>
 </body>
 </html>

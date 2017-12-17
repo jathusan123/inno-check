@@ -73,6 +73,49 @@ button{
     outline: none;
     margin: 10px 0 10px 0;}
 </style>
+ <style>
+.dropbtn {
+    background-color:white;
+    font-family: fantasy;
+    color: black;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+    font-size:15px ;
+    cursor: pointer;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: white;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {background-color: #2196F3}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown:hover .dropbtn {
+    background-color: white;
+}
+</style>
 <body class="w3-blue">
 
 <!-- Navigation bar with social media icons -->
@@ -89,13 +132,24 @@ button{
 						<div class="menu">
 							<ul class="nav nav-tabs" role="tablist">
                                                             <li role="presentation" class="active"><a href="operator.php">Home</a></li>
-								  <li role="presentation"><a href="booking.php">Book Ticket</a></li>
-                                                                <li role="presentation"><a href="update.php">Update Profile</a></li>
-                                                                <li role="presentation"><a href="bookedTicket.php">My Bookings</a></li>
+								<li role="presentation"> <div class="dropdown">
+                                                                    <button class="dropbtn">Update</button>
+                                                                    <div class="dropdown-content">
+    <a href="bus_update.php">Update Bus</a>
+    <a href="update_bus.php">Update Profile</a>
+    <a href="bus_delete.php">Delete Bus</a>
+  </div>
+</div></li>
+                                                                    <li role="presentation"><a href="book.php">Book</a></li>
+                                                                    	
+                                                                    <li role="presentation"><a href="details.php">My Details</a></li>
+                                                                <li role="presentation"><a href="availability.php">Availability</a></li>
+                                                              
+                                  
+                                               
                                                                 <li role="presentation"><a href="Add_Bus.php">Add Bus</a></li>
                                                                 <li role="presentation"><a href="login.php"  onclick="return confirm('Are you sure to log out?');">Logout</a></li>
-                                                                <li role="presentation"><a href="reomve.php">Deactivate</a></li>
-								<!--<li role="presentation"><a href="contacts.html">Contact</a></li>-->
+                                                               <li role="presentation"><a href="reomve1.php">Deactivate</a></li>
 							</ul>
 						</div>
 					</div>			
@@ -133,7 +187,7 @@ button{
                </div>-->
 <!--</div>-->
        <div class="login-page">
-  <div class="form">
+           <center> <div class="form">
   
     <form class="form-inline" >
         
@@ -188,7 +242,7 @@ button{
         <div class='td'></div>
         <input type="submit" class="button" name="submit" value="Confirm" />
         <!--<input type="password" name="password" placeholder="Password" id="txtNewPassword" />-->
-        </div>
+        </div></center>
         
 
      </form>

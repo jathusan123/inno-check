@@ -2,15 +2,7 @@
     <?php
       session_start();
    $op_id=$_SESSION['user_id'];
-   $date = date('Y-m-d'); //today date
-   
-$weekOfdays = array();
-$date = new DateTime($date);
-$date->modify('+1 day');
-for($i=5; $i <= 10; $i++){
-    $date->modify('+1 day');
-    $weekOfdays[] = $date->format('Y-m-d');
-}
+
     ?>
 <title>Demo|Lisenme</title>
 <meta charset="UTF-8">
@@ -150,7 +142,7 @@ for($i=5; $i <= 10; $i++){
 					<div class="container-fluid">
 						<div class="navbar-header">
 							<div class="navbar-brand">
-                                                            <a href="operator.php"><h1>Change Your Bus Availability </h1></a>
+                                                            <a href="operator.php"><h1>Select a bus.. </h1></a>
 							</div>
 						</div>
 						<div class="menu">
@@ -183,36 +175,14 @@ for($i=5; $i <= 10; $i++){
 	</header>
     
 
-<script type="text/javascript">
-$(document).ready(function(){
-    $('#country').on('change',function(){
-        var countryID = $(this).val();
-        if(countryID){
-            $.ajax({
-                type:'POST',
-                url:'ajaxData1.php',
-                data:'country_id='+countryID,
-                success:function(html){
-                    $('#time').html(html);
-//                    $('#date').html('<option value="">Select Destination first</option>'); 
-                }
-            }); 
-        }else{
-            $('#time').html('<option value="">Select Starting Place first</option>');
-//            $('#date').html('<option value="">Select Destination first</option>'); 
-        }
-    });
-    });
-    </script>
+
       <div class="w3-container w3-white w3-margin w3-padding-large "style="height:10%;">
         
-          <h2 style="text-align: center";>Change Your Availabilty</h2>
+          <h2 style="text-align: center";>Select a bus...</h2>
           <br>
           <div class="select-boxes">
     <?php
-  foreach ($weekOfdays as $value){
-      
-  }
+
   
  // $user_id=6;
      //$user_id=$_SESSION['id'];
@@ -278,87 +248,55 @@ img { position: absolute; left: 50%; top: 30%;  margin: -63px 0 0 -182px;}
         }
         ?>
     </select>
-    
+<!--    
     <select name="date" id="date">
         <option value="">Select Date</option>
         <?php
-        foreach ($weekOfdays as $w){
-             echo '<option value="'.$w.'">'.$w.'</option>';
-        }
+//        foreach ($weekOfdays as $w){
+//             echo '<option value="'.$w.'">'.$w.'</option>';
+//        }
         ?>
     </select>
         <select name="time" id="time">
         <option value="">Select Time</option>
-    </select>
-        <!--<input type="submit" class="button"  name="confirm" value="Mark Unavailabilty" onclick="return confirm('Are you sure?');"/>-->
-        <input type="submit" class="button" name="submit" value="Mark Unavailabilty" onclick="return confirm('Are You Sure ?');" />
+    </select>-->
+       <input type="submit" class="button" name="submit" value="Confirm"  />
+       <!--<input  type="submit" class="button" name="timeslot" value="Change Slots "  />-->
+       <input  type="submit" class="button" name="station" value="Change Station and Timeslots"  />
     </script>
     <?php
 
 include('dbConfig.php');
 
     
-    //echo '<script>window.location="PatientSelect.php"</script>';
-//$query = $db->query("SELECT date,date FROM date");
-//    
-//    //Count total number of rows
-//$rowCount = $query->num_rows;
-//    
-//    //Display cities list
-//    if($rowCount > 0){
-//        echo '<option value="">Select Date</option>';
-//        while($row = $query->fetch_assoc()){ 
-//            echo '<option value="'.$row['date'].'">'.$row['date'].'</option>';
-//    }}
+    
   
 
-if($_GET){
    
 
-    if(isset($_GET['submit'])){
-
-        //$query = $db->query("SELECT date,bus_id from date WHERE date_id= '$datee'");
-    
-    
-    //Count total number of rows
-//    $rowCount = $query->num_rows;
-//     if($rowCount > 0){
-//      //  echo '<option value="">Select Type</option>';
-//        while($row = $query->fetch_assoc()){ 
-//            
-//            $date=$row['date'];
-//            //echo '<option value="'.$row['bus_id'].'">'.$row['date'].'</option>';
-//     }}
+   if(isset($_GET['submit']) ){
+     
         $bus_id=$_GET['country'];
-        $date=$_GET['date'];
-         $time=$_GET['time'];
-            $querye = $db->query("SELECT bus_id FROM availability WHERE bus_id='$bus_id' and  date='$date' and time='$time'");
+        $_SESSION['bus_id']=$bus_id;
+        
+echo '<script>window.location="bus_update1.php"</script>';
 
-$rowCounte = $querye->num_rows;
+  
 
-//$columnValues = Array();
-if($rowCounte > 0){
-
- echo "<script type='text/javascript'>alert('Already Selected')</script>";
-}
-else{
-    echo $bus_id;
-    $querye22 = $db->query("INSERT INTO availability (bus_id,date,time) VALUES('$bus_id','$date','$time')");
-  //$rowCounte22 = $querye22->num_rows;
-
-//$columnValues = Array();
-      if($querye22){
-
-      echo "<script type='text/javascript'>alert('Unavailabilty Updated')</script>";
-      echo '<script>window.location="availability.php"</script>';
-      
-      }
-      else{
-          echo "<script type='text/javascript'>alert(' Update Failed')</script>";
-      }
-   // $_SESSION['seats'] = $columnValues;
-    //echo '<script>window.location="Seat_select.php"</script>';
-}
        
-    }}
+    }
+    if(isset($_GET['station']) ){
+        if(!is_null($_GET['country'])){
+       $bus_id=$_GET['country'];
+        $_SESSION['bus_id']=$bus_id;
+             $_SESSION['int']=array();
+$_SESSION['amount']=array();
+$_SESSION['time1']=array();
+     echo '<script>window.location="station_change.php"</script>'; 
+  }
+  else{
+    echo "<script type='text/javascript'>alert('Select a bus first')</script>";
+  }
+    }
+    
         ?>

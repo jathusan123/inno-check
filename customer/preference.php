@@ -144,7 +144,7 @@ input{
                                                     <form class="login-form" >
 						
                                                 <input type="submit" class="button" name="submit" value="Confirm" href="Check.php"  onclick="return confirm('Are you sure?');" />
-                                                <input type="submit" class="button" name="cancel" value="Cancel" />
+                                                <input href="booking.php" type="submit" class="button" name="cancel" value="Cancel"  onclick="return confirm('Are you sure?');"/>
 			
                             </form>
                                                     </div>
@@ -317,6 +317,9 @@ array_push($d, $key);}
          echo '<script>window.location="Check.php"</script>';
          
     }
+    }
+    if(isset($_GET['cancel']) ){
+        echo '<script>window.location="booking.php"</script>';
     }
 //    if($_GET){
 //   

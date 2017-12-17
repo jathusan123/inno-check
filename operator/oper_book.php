@@ -220,12 +220,25 @@ and is wrapped around the whole page content, except for the footer in this exam
 							<ul class="nav nav-tabs" role="tablist">
                                                             <li role="presentation" ><a href="customer.php">Home</a></li>
 								
-                                                                <li role="presentation"><a href="booking.php">Book</a></li>
-                                                                <li role="presentation"><a href="update.php">Update</a></li>
-                                                                <li role="presentation"><a href="bookedTicket.php">My Bookings</a></li>
-                                                              <li role="presentation"><a href="login.php"  onclick="return confirm('Are you sure to log out?');">Logout</a></li>
-                                                                <li role="presentation"><a href="reomve.php">Deactivate</a></li>
-								<li role="presentation"><a href="contacts.html">Contact</a></li>
+                                                                 
+								<li role="presentation"> <div class="dropdown">
+                                                                    <button class="dropbtn">Update</button>
+                                                                    <div class="dropdown-content">
+    <a href="bus_update.php">Update Bus</a>
+    <a href="update_bus.php">Update Profile</a>
+    <a href="bus_delete.php">Delete Bus</a>
+  </div>
+</div></li>
+                                                                    <li role="presentation"><a href="book.php">Book</a></li>
+                                                                    	
+                                                                    <li role="presentation"><a href="details.php">My Details</a></li>
+                                                                <!--<li role="presentation"><a href="availability.php">Availability</a></li>-->
+                                                              
+                                  
+                                               
+                                                                <li role="presentation"><a href="Add_Bus.php">Add Bus</a></li>
+                                                                <li role="presentation"><a href="login.php"  onclick="return confirm('Are you sure to log out?');">Logout</a></li>
+                                                               <li role="presentation"><a href="reomve1.php">Deactivate</a></li>
 							</ul>
 						</div>
 					</div>			
@@ -270,7 +283,51 @@ p   { font-family: verdana;
 h6 { font-family: verdana;
     font-size: 200%;}
   
-</style><!--
+</style>
+<style>
+.dropbtn {
+    background-color:white;
+    font-family: fantasy;
+    color: black;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+    font-size:15px ;
+    cursor: pointer;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: white;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {background-color: #2196F3}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown:hover .dropbtn {
+    background-color: white;
+}
+</style>
+<!--
     
       <!-- Blog entry -->
       <div class="w3-container w3-white w3-margin w3-padding-large "style="height:10%;">
@@ -293,12 +350,12 @@ h6 { font-family: verdana;
     $rowCount = $query->num_rows;
     ?><style>
 
-img { position: absolute; left: 50%; top: 50%;  margin: -63px 0 0 -182px;}
+img { position: absolute; left: 50%; top: 40%;  margin: -63px 0 0 -182px;}
 </style>
                <div class="login-page">
   <div class="form">
       <div >
-          <img src="img/ELEC_CITY.0.jpg" alt="Girl in a jacket" style="width:800px;height:500px; "> 
+          <img src="img/big.jpg" alt="Girl in a jacket" style="width:800px;height:600px; "> 
       </div>
 <!--  <div class="slideshow-container" style="  position: absolute; right: 65px; ;width: 800px; ">
   <div class="mySlides fade" >

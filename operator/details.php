@@ -69,6 +69,49 @@ session_start();
         outline: none;
         margin: 10px 0 10px 0;}
 </style>
+ <style>
+.dropbtn {
+    background-color:white;
+    font-family: fantasy;
+    color: black;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+    font-size:15px ;
+    cursor: pointer;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: white;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {background-color: #2196F3}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown:hover .dropbtn {
+    background-color: white;
+}
+</style>
 <body class="w3-blue">
 
 <!-- Navigation bar with social media icons -->
@@ -84,16 +127,25 @@ session_start();
 						</div>
 						<div class="menu">
 							<ul class="nav nav-tabs" role="tablist">
-								 <li role="presentation"><a href="book.php">Book</a></li>
-                                                                    <li role="presentation"><a href="update_bus.php">Update</a></li>
-                                                                    <li role="presentation"><a href="details.php">My Details</a></li>
+								  <li role="presentation" class="active"><a href="operator.php">Home</a></li>
+								<li role="presentation"> <div class="dropdown">
+                                                                    <button class="dropbtn">Update</button>
+                                                                    <div class="dropdown-content">
+    <a href="bus_update.php">Update Bus</a>
+    <a href="update_bus.php">Update Profile</a>
+    <a href="bus_delete.php">Delete Bus</a>
+  </div>
+</div></li>
+                                                                    <li role="presentation"><a href="book.php">Book</a></li>
+                                                                    	
+                                                                    <!--<li role="presentation"><a href="details.php">My Details</a></li>-->
                                                                 <li role="presentation"><a href="availability.php">Availability</a></li>
                                                               
                                   
                                                
-								<li role="presentation"><a href="contacts.html">Contact</a></li>
+                                                                <li role="presentation"><a href="Add_Bus.php">Add Bus</a></li>
                                                                 <li role="presentation"><a href="login.php"  onclick="return confirm('Are you sure to log out?');">Logout</a></li>
-                                                               <li role="presentation"><a href="reomve.php">Deactivate</a></li>
+                                                               <li role="presentation"><a href="reomve1.php">Deactivate</a></li>
 							</ul>
 						</div>
 					</div>			
@@ -155,7 +207,7 @@ else {
 
 if((10>2)){
 
-    $sql="select * from customer natural join booking where operator_id='$operator_id'";
+    $sql="select name,ph_number,email,booking_id,date,time,arrive_place,depart_place,seat_no,payment_status,route_id,bus_id from customer natural join booking where operator_id='$operator_id'";
 
     $query1=mysqli_query($db,$sql);
     //$sql1="select customer_id from booking where operator_id=$operator_id)";
@@ -166,18 +218,18 @@ if($query1){
     <table border="2"  style= "background-color: #f2fbff; color: #285e8e; margin: 0 auto;" >
     <thead>
     <tr>
-        <th>  Customer ID  </th>
         <th>  Name   </th>
         <th>  Phone No  </th>
         <th>  e mail  </th>
+        <th>  Booking ID  </th>
         <th>  Date  </th>
-        <th>  Time  </th>
+        <!--<th>  Time  </th>-->
         <th>  Arrive Place  </th>
         <th>  Depart Place  </th>
         <th>  Seat Number  </th>
         <th>  Payment  </th>
-        <th>  Bus ID  </th>
         <th>  Route ID  </th>
+        <th>  Bus ID  </th>
 
     </tr>
     </thead
@@ -193,7 +245,7 @@ if($query1){
     while($row = mysqli_fetch_row($query1)){
         ?><tr><?php
         $i=0;
-        while($i<13){
+        while($i<12){
             if($i!=5){
                 ?><td><?php echo $row[$i]; ?></td><?php
             }

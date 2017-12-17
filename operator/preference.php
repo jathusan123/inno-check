@@ -14,7 +14,7 @@ include('dbConfig.php');
         $route_id= $_SESSION['route_id'];
          $time= $_SESSION['time'];
          $date= $_SESSION['date'];
-          $user_id= $_SESSION['id'];
+         $op_id=$_SESSION['user_id'];
           $station_id=$_SESSION['station_id'];  
           $query24 = $db->query("SELECT start_place,inter_station,amount FROM intermediate_station WHERE station_id='$station_id'");
   $rowCount24 = $query24->num_rows;
@@ -312,7 +312,7 @@ array_push($d, $key);}
         
       echo $so;  
       $seat_id= ($so);
-     $query1 = $db->query("INSERT INTO booking (date,time,route_id,bus_id,payment_status,seat_no,customer_id,operator_id,arrive_place,depart_place )VALUES( '$date', '$time','$route_id','$bus_id','None','$seat_id','$user_id','$n7','$start_place','$destination' )");
+     $query1 = $db->query("INSERT INTO booking (date,time,route_id,bus_id,payment_status,seat_no,customer_id,operator_id,arrive_place,depart_place )VALUES( '$date', '$time','$route_id','$bus_id','None','$seat_id',0,'$op_id','$start_place','$destination' )");
          }
          echo '<script>window.location="Check.php"</script>';
          

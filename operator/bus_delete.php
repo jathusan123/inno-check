@@ -78,6 +78,49 @@
         outline: none;
         margin: 10px 0 10px 0;}
 </style>
+ <style>
+.dropbtn {
+    background-color:white;
+    font-family: fantasy;
+    color: black;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+    font-size:15px ;
+    cursor: pointer;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: white;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {background-color: #2196F3}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown:hover .dropbtn {
+    background-color: white;
+}
+</style>
 <body class="w3-white">
 
 <!-- Navigation bar with social media icons -->
@@ -99,13 +142,22 @@
 					<div class="container-fluid">
 						<div class="navbar-header">
 							<div class="navbar-brand">
-                                                            <a href="operator.php"><h1>Change Your Bus Availability </h1></a>
+                                                            <a href="operator.php"><h1>Delete a bus... </h1></a>
 							</div>
 						</div>
 						<div class="menu">
 							<ul class="nav nav-tabs" role="tablist">
-                                                             <li role="presentation"><a href="book.php">Book</a></li>
-                                                                    <li role="presentation"><a href="update_bus.php">Update</a></li>
+                                                             <li role="presentation" class="active"><a href="operator.php">Home</a></li>
+								<li role="presentation"> <div class="dropdown">
+                                                                    <button class="dropbtn">Update</button>
+                                                                    <div class="dropdown-content">
+    <a href="bus_update.php">Update Bus</a>
+    <a href="update_bus.php">Update Profile</a>
+    <a href="bus_delete.php">Delete Bus</a>
+  </div>
+</div></li>
+                                                                    <li role="presentation"><a href="book.php">Book</a></li>
+                                                                    	
                                                                     <li role="presentation"><a href="details.php">My Details</a></li>
                                                                 <!--<li role="presentation"><a href="availability.php">Availability</a></li>-->
                                                               
@@ -113,7 +165,7 @@
                                                
                                                                 <li role="presentation"><a href="Add_Bus.php">Add Bus</a></li>
                                                                 <li role="presentation"><a href="login.php"  onclick="return confirm('Are you sure to log out?');">Logout</a></li>
-                                                               <li role="presentation"><a href="reomve.php">Deactivate</a></li>
+                                                               <li role="presentation"><a href="reomve1.php">Deactivate</a></li>
 							</ul>
 						</div>
 					</div>			
@@ -200,33 +252,22 @@ img { position: absolute; left: 50%; top: 30%;  margin: -63px 0 0 -182px;}
     <select name="date" id="date">
         <option value="">Select Date</option>
         <?php
-        foreach ($weekOfdays as $w){
-             echo '<option value="'.$w.'">'.$w.'</option>';
-        }
+//        foreach ($weekOfdays as $w){
+//             echo '<option value="'.$w.'">'.$w.'</option>';
+//        }
         ?>
     </select>
         <select name="time" id="time">
         <option value="">Select Time</option>
     </select>-->
-       <input type="submit" class="button" name="submit" value="Confirm" onclick="return confirm('Are You Sure  ?');" />
+       <input type="submit" class="button" name="submit" value="Confirm" onclick="return confirm('Are You Sure(There may be bookings on your bus) ?');" />
     </script>
     <?php
 
 include('dbConfig.php');
 
     
-    //echo '<script>window.location="PatientSelect.php"</script>';
-//$query = $db->query("SELECT date,date FROM date");
-//    
-//    //Count total number of rows
-//$rowCount = $query->num_rows;
-//    
-//    //Display cities list
-//    if($rowCount > 0){
-//        echo '<option value="">Select Date</option>';
-//        while($row = $query->fetch_assoc()){ 
-//            echo '<option value="'.$row['date'].'">'.$row['date'].'</option>';
-//    }}
+    
   
 
    
@@ -260,10 +301,51 @@ include('dbConfig.php');
 //}
 //else{
 //    echo $bus_id;
-    $querye22 = $db->query("DELETE FROM bus WHERE bus_id=$bus_id");
-  //$rowCounte22 = $querye22->num_rows;
-
+//$querye = $db->query("SELECT * FROM booking WHERE bus_id='$bus_id'");
+//echo $bus_id;
+//$rowCounte = $querye->num_rows;
+//
 //$columnValues = Array();
+//if($rowCounte > 0){
+//
+//while ( $row4 = $querye->fetch_assoc()) {
+//
+//  $user_id=$row4['user_id'];
+//  $date=$row4['date'];
+//  $time=$row4['time'];
+//  $querye23=$db->query("INSERT INTO messages (user_id,message) VALUES('$user_id',kj)");
+//}
+//}
+//else{
+//    //Your booking on +'$date'+'$time'+cancelled due to bus unavailabilty
+//   // $_SESSION['seats'] = $columnValues;
+//    //echo '<script>window.location="Seat_select.php"</script>';
+//}
+$query = $db->query("SELECT * FROM booking WHERE bus_id='$bus_id'");
+    
+    //Count total number of rows
+    $rowCount = $query->num_rows;
+    
+    //Display cities list
+    if($rowCount > 0){
+        
+        
+        while($row = $query->fetch_assoc()){
+            $user_id=$row['customer_id'];
+ $date=$row['date'];
+  $time=$row['time'];
+  $seatno=$row['seat_no'];
+  $arrive=$row['arrive_place'];
+  $dep=$row['depart_place'];
+  $ide="Your Booking on Date ".$date." Time ".$time." Seat id ".$seatno." From ".$arrive." To ".$dep." has cancelled due to unexpected bus unavailability";
+$query11 = $db->query("INSERT INTO messages (user_id,message) VALUES( '$user_id','$ide')");
+         //   
+    }}
+       $querye22 = $db->query("DELETE FROM bus WHERE bus_id=$bus_id");
+
+  
+
+
       if($querye22){
 
       echo "<script type='text/javascript'>alert('Success Fully Deleted')</script>";
@@ -273,6 +355,8 @@ include('dbConfig.php');
       else{
           echo "<script type='text/javascript'>alert(' Update Failed')</script>";
       }
+    
+//  
    // $_SESSION['seats'] = $columnValues;
     //echo '<script>window.location="Seat_select.php"</script>';
 //}

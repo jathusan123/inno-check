@@ -78,17 +78,18 @@ session_start();
 					<div class="container-fluid">
 						<div class="navbar-header">
 							<div class="navbar-brand">
-								<a href="index.html"><h1>Your Bookings </h1></a>
+								<a href="index.html"><h1>Your Bookings... </h1></a>
 							</div>
 						</div>
 						<div class="menu">
 							<ul class="nav nav-tabs" role="tablist">
-								     <li role="presentation" class="active"><a href="customer.php">Home</a></li>
+								      <li role="presentation" class="active"><a href="customer.php">Home</a></li>
 								
-                                                                <li role="presentation"><a href="booking.php">Book</a></li>
-                                                                <li role="presentation"><a href="update.php">Update</a></li>
+                                                                <li role="presentation"><a href="booking.php">Book Ticket</a></li>
+                                                                <li role="presentation"><a href="update.php">Update Profile</a></li>
                                                                 <li role="presentation"><a href="bookedTicket.php">My Bookings</a></li>
-                                                                 <li role="presentation"><a href="login.php"  onclick="return confirm('Are you sure to log out?');">Logout</a></li>
+                                                                <!--<li role="presentation"><a href="Add_Bus.php">Add Bus</a></li>-->
+                                                                <li role="presentation"><a href="login.php"  onclick="return confirm('Are you sure to log out?');">Logout</a></li>
                                                                 <li role="presentation"><a href="reomve.php">Deactivate</a></li>
 								<li role="presentation"><a href="contacts.html">Contact</a></li>
 							</ul>
@@ -101,13 +102,7 @@ session_start();
 <div class="w3-content" style="max-width:1600px">
 
 <!--     Header 
--->    <header class="w3-container w3-center w3-padding-48 w3-white">
-    <h1 class="w3-xxxlarge"><a href="http://www.lisenme.com/"><img src="img/logo_bus.png" alt="Girl Hat" style="width:10%; " class="w3-padding-16"></a></h1>
-        <h6>Welcome to  <span class="w3-tag">BuzOn</span></h6>
-
-
-    </header>
-
+--> 
 
     <!-- Image header -->
 

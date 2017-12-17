@@ -148,7 +148,7 @@ if(isset($_POST['remove'])&& (!(empty($_POST['paw'])))) {
     mysqli_free_result($result);
     mysqli_close($db);
 
-    if (md5($password)===$password1){
+    if ($password===$password1){
 
         $db = mysqli_connect("localhost", "root", 'bd13011996', "ticketbooking") or die ("Failed to connect");
         $query1 = "update login set status='deactive' where email='$email'";

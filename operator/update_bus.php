@@ -26,9 +26,8 @@ if(isset($_POST['update'])&& (!(empty($_POST['name'])))){
     $query1 = "update bus_operator set name='$username',ph_number='$phone' where email='$email'";
     $result1 = mysqli_query($db,$query1);
     if($result1) {
-        //echo $email;
-        //echo "Succesfully updated";
-        header('Location: operator.php');
+        echo "<script type='text/javascript'>alert('Update Successfull')</script>";
+      echo '<script>window.location="operator.php"</script>';
     }
     else {
         echo "Failed to update";
@@ -60,57 +59,88 @@ if(isset($_POST['update'])&& (!(empty($_POST['name'])))){
         <link href="css/style_2.css" rel="stylesheet">
 
 <style>
+input[type=text], select {
+    color: black;
+    width: 20%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+input[type=int], select {
+    color: black;
+    width: 20%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
     
+}
+input[type=submit] {
+    width: 20%;
+    background-color: #00bcd4;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
 
-    h1,h2,h3,h4,h5,h6 {font-family: "Oswald"}
-    body {font-family: "Open Sans"}
+input[type=submit]:hover {
+    background-color: #00bcd4;
+}
 
 
-    .select-boxes{width: 280px;text-align: center;}
-    select {
-        background-color: #F5F5F5;
-        border: 1px double #15a6c7;
-        color: #1d93d1;
-        font-family: Georgia;
-        font-weight: bold;
-        font-size: 14px;
-        height: 39px;
-        padding: 7px 8px;
-        width: 250px;
-        outline: none;
-        margin: 10px 0 10px 0;
-    }
-    select option{
-        font-family: Georgia;
-        font-size: 14px;}
-    /*h6{
-        font-size: 14px;
-        height: 39px;
-        width: 250px;
-
-        }*/
-    input{
-        font-family: Georgia;
-        font-weight: bold;
-        font-size: 14px;
-        height: 35px;
-        padding: 7px 8px;
-        width: 200px;
-        outline: none;
-        margin: 10px 0 10px 0;
-    color: black;}
-
-    button{
-        font-family: Georgia;
-        font-weight: bold;
-        font-size: 10px;
-        height: 30px;
-        padding: 7px 8px;
-        width: 100px;
-        outline: none;
-        margin: 10px 0 10px 0;}
 </style>
-<body style="background-color: #1d93d1 ">
+ <style>
+.dropbtn {
+    background-color:white;
+    font-family: fantasy;
+    color: black;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+    font-size:15px ;
+    cursor: pointer;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: white;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {background-color: #2196F3}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown:hover .dropbtn {
+    background-color: white;
+}
+</style>
+<body style="background-color: white ">
 
 <!-- Navigation bar with social media icons -->
 <!--<div class="w3-bar w3-black w3-hide-small" style="height:5%">
@@ -131,23 +161,25 @@ if(isset($_POST['update'])&& (!(empty($_POST['name'])))){
 					<div class="container-fluid">
 						<div class="navbar-header">
 							<div class="navbar-brand">
-								<a href="index.html"><h1>Welcome To BuzOn <?php echo $username; ?></h1></a>
+								<a href="index.html"><h1>Update Your Details..</h1></a>
 							</div>
 						</div>
 						<div class="menu">
 							<ul class="nav nav-tabs" role="tablist">
-                                                            <li role="presentation" class="active"><a href="operator.php">Home</a></li>
+                                                        
 								
+                                                                       <li role="presentation" class="active"><a href="operator.php">Home</a></li>
+<li role="presentation"><a href="bus_update.php">Update Bus</a></li>
                                                                     <li role="presentation"><a href="book.php">Book</a></li>
-                                                                    <li role="presentation"><a href="update_bus.php">Update</a></li>
+                                                                    	
                                                                     <li role="presentation"><a href="details.php">My Details</a></li>
                                                                 <li role="presentation"><a href="availability.php">Availability</a></li>
                                                               
                                   
                                                
-								<li role="presentation"><a href="contacts.html">Contact</a></li>
+                                                                <li role="presentation"><a href="Add_Bus.php">Add Bus</a></li>
                                                                 <li role="presentation"><a href="login.php"  onclick="return confirm('Are you sure to log out?');">Logout</a></li>
-                                                               <li role="presentation"><a href="reomve.php">Deactivate</a></li>
+                                                               <li role="presentation"><a href="reomve1.php">Deactivate</a></li>
 							</ul>
 						</div>
 					</div>			
@@ -169,18 +201,18 @@ if(isset($_POST['update'])&& (!(empty($_POST['name'])))){
 
     <!-- Grid -->
    
-<form method="post" action="update_bus.php">
+<center> <form method="post" action="update_bus.php">
 
-    <label style="color: black; font-size:20px">Name:___ </label>
-    <input type="text" name="name" value="<?php echo $username;?>"><br><br>
-    <label style="color: black; font-size:20px">E-Mail:___ </label>
-    <input type="text" name="email" value="<?php echo $email;?>"readonly><br><br>
-    <label style="color: black; font-size:20px">TP No:___</label>
-    <input type="int" name="ph_number" value="<?php echo $phone?>"><br><br>
+        <label style="color: black; font-size:20px">Name </label><br>
+    <input type="text" name="name" value="<?php echo $username;?>"><br>
+    <label style="color: black; font-size:20px">E-Mail </label><br>
+    <input type="text" name="email" value="<?php echo $email;?>"readonly><br>
+    <label style="color: black; font-size:20px">TP No</label><br>
+    <input type="int" name="ph_number" value="<?php echo $phone?>"><br>
 
-    <input type="submit" name="update" value="Update" onclick="return confirm('Are you sure to update your details?');">
-
-</form><br>
+    <!--<input type="submit" name="update" value="Update" onclick="return confirm('Are you sure to update your details?');">-->
+<input type="submit" name="update" style="color: black;" value="Update Details" onclick="return confirm('Are You Sure  ?');">
+    </form></center>
 
 
 

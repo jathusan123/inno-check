@@ -1,10 +1,5 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: G2
- * Date: 04-Oct-17
- * Time: 01:22 AM
- */
+
 
 session_start();
 
@@ -107,6 +102,49 @@ $db = mysqli_connect("localhost", "root", 'bd13011996', "ticketbooking");
         outline: none;
         margin: 10px 0 10px 0;}
 </style>
+ <style>
+.dropbtn {
+    background-color:white;
+    font-family: fantasy;
+    color: black;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+    font-size:15px ;
+    cursor: pointer;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: white;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {background-color: #2196F3}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown:hover .dropbtn {
+    background-color: white;
+}
+</style>
 <body class="w3-white">
 
 <!-- Navigation bar with social media icons -->
@@ -134,9 +172,16 @@ $db = mysqli_connect("localhost", "root", 'bd13011996', "ticketbooking");
 						<div class="menu">
 							<ul class="nav nav-tabs" role="tablist">
                                                             <li role="presentation" class="active"><a href="operator.php">Home</a></li>
-								
+								<li role="presentation"> <div class="dropdown">
+                                                                    <button class="dropbtn">Update</button>
+                                                                    <div class="dropdown-content">
+    <a href="bus_update.php">Update Bus</a>
+    <a href="update_bus.php">Update Profile</a>
+    <a href="bus_delete.php">Delete Bus</a>
+  </div>
+</div></li>
                                                                     <li role="presentation"><a href="book.php">Book</a></li>
-                                                                    <li role="presentation"><a href="update_bus.php">Update</a></li>
+                                                                    	
                                                                     <li role="presentation"><a href="details.php">My Details</a></li>
                                                                 <li role="presentation"><a href="availability.php">Availability</a></li>
                                                               
@@ -144,7 +189,7 @@ $db = mysqli_connect("localhost", "root", 'bd13011996', "ticketbooking");
                                                
                                                                 <li role="presentation"><a href="Add_Bus.php">Add Bus</a></li>
                                                                 <li role="presentation"><a href="login.php"  onclick="return confirm('Are you sure to log out?');">Logout</a></li>
-                                                               <li role="presentation"><a href="reomve.php">Deactivate</a></li>
+                                                               <li role="presentation"><a href="reomve1.php">Deactivate</a></li>
 							</ul>
 						</div>
 					</div>			

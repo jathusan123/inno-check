@@ -114,6 +114,49 @@ button{
     outline: none;
     margin: 10px 0 10px 0;}
 </style>
+ <style>
+.dropbtn {
+    background-color:white;
+    font-family: fantasy;
+    color: black;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+    font-size:15px ;
+    cursor: pointer;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: white;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {background-color: #2196F3}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown:hover .dropbtn {
+    background-color: white;
+}
+</style>
 <body class="w3-blue">
 
 <!-- Navigation bar with social media icons -->
@@ -133,14 +176,19 @@ button{
 						</div>
 						<div class="menu">
 							<ul class="nav nav-tabs" role="tablist">
-								   <li role="presentation" class="active"><a href="operator.php">Home</a></li>
-								  <li role="presentation"><a href="booking.php">Book Ticket</a></li>
-                                                                <li role="presentation"><a href="update.php">Update Profile</a></li>
-                                                                <li role="presentation"><a href="bookedTicket.php">My Bookings</a></li>
+								  
+                                                                       <li role="presentation" class="active"><a href="operator.php">Home</a></li>
+<li role="presentation"><a href="bus_update.php">Update Bus</a></li>
+                                                                    <li role="presentation"><a href="book.php">Book</a></li>
+                                                                    	
+                                                                    <li role="presentation"><a href="details.php">My Details</a></li>
+                                                                <li role="presentation"><a href="availability.php">Availability</a></li>
+                                                              
+                                  
+                                               
                                                                 <li role="presentation"><a href="Add_Bus.php">Add Bus</a></li>
                                                                 <li role="presentation"><a href="login.php"  onclick="return confirm('Are you sure to log out?');">Logout</a></li>
-                                                                <li role="presentation"><a href="reomve.php">Deactivate</a></li>
-								<!--<li role="presentation"><a href="contacts.html">Call</a></li>-->
+                                                               <li role="presentation"><a href="reomve1.php">Deactivate</a></li>
 							</ul>
 						</div>
 					</div>			
@@ -334,7 +382,7 @@ button{
          }
          else{
          $query15 = $db->query("INSERT INTO bus (name,total_seats,available_seats,route_id,bus_number,type,operator_id )VALUES( '$bus_name', '$bus_seats','$bus_seats','$bus_route','$bus_number','$bus_type','$op_id' )");
-          $sql15 = $db->query("SELECT bus_id FROM bus where bus_number='$bus_number'");
+          $sql15 = $db->query("SELECT bus_id FROM bus where bus_number='$bus_number' AND name='$bus_name' AND route_id='$bus_route'");
                     
     $row15 = mysqli_fetch_array($sql15);
          $bus_id1=$row15['bus_id'];

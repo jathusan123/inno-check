@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html>
     <?php
     include('dbConfig.php');
@@ -170,21 +169,7 @@ $(document).ready(function(){
             $('#time').html('<option value="">Select bus first</option>'); 
         }
     });
-//    $('#time').on('change',function(){
-//        var timeID = $(this).val();
-//        if(timeID){
-//            $.ajax({
-//                type:'POST',
-//                url:'ajaxData.php',
-//                data:'time_id='+typeID,
-//                success:function(html){
-//                    $('#date').html(html);
-//                }
-//            }); 
-//        }else{
-//            $('#date').html('<option value="">Select type first</option>'); 
-//        }
-//    });
+
  
     
 });
@@ -193,19 +178,10 @@ $(document).ready(function(){
     
 <body class="w3-white">
 
-<!-- Navigation bar with social media icons -->
-<!--<div class="w3-bar w3-black w3-hide-small">
-  <a href="https://www.facebook.com/lisenme/" class="w3-bar-item w3-button" ><i class="fa fa-home"></i></a>
-  <a href="https://twitter.com/LisenMee" class="w3-bar-item w3-button"><i class="fa fa-book"></i></a>
-  <a href="https://www.youtube.com/channel/UCEdC6Qk_DZ9fX_gUYFJ1tsA" class="w3-bar-item w3-button"><i class="fa fa-search"></i></a>
-  <a href="https://plus.google.com/115714479889692934329" class="w3-bar-item w3-button"><i class="fa fa-phone"></i></a>
-</div>
-  -->
-<!-- w3-content defines a container for fixed size centered content, 
-and is wrapped around the whole page content, except for the footer in this example -->
+
 <div class="w3-content" style="max-width:1600px">
 
-  <!-- Header -->
+
  <header>
 		<div class="container" style="width:100%;">
 			<div class="row">
@@ -234,15 +210,7 @@ and is wrapped around the whole page content, except for the footer in this exam
 		</div>
 	</header>
   
-  <!-- Image header -->
- 
 
-  <!-- Grid -->
-
-   
-<!--  <div class="w3-row w3-padding w3-border">-->
-
-    <!-- Blog entries -->
     <div class="w3-col l12 s12">
                 <style>
          
@@ -300,38 +268,7 @@ img { position: absolute; left: 50%; top: 50%;  margin: -63px 0 0 -182px;}
       <div >
           <img src="img/ELEC_CITY.0.jpg" alt="Girl in a jacket" style="width:800px;height:500px; "> 
       </div>
-<!--  <div class="slideshow-container" style="  position: absolute; right: 65px; ;width: 800px; ">
-  <div class="mySlides fade" >
-      
-    <div class="numbertext">1 / 3</div>
-    <img src="img/70266210-bus-wallpapers.jpg" style="width:100%">
-    <div class="text">Caption Text</div>
-  </div>
-
-  <div class="mySlides fade">
-    <div class="numbertext">2 / 3</div>
-    <img src="img/volvo2.jpg" style="width:100%">
-    <div class="text">Caption Two</div>
-  </div>
-
-  <div class="mySlides fade">
-    <div class="numbertext">3 / 3</div>
-    <img src="img/ELEC_CITY.0.jpg" style="width:100%">
-    <div class="text">Caption Three</div>
-  </div>
-
-  <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
-  <a class="next" onclick="plusSlides(1)">&#10095;</a>
-</div>
-<br>-->
-
-<!--<div style="text-align:center">
-  <span class="dot" onclick="currentSlide(1)"></span>
-  <span class="dot" onclick="currentSlide(2)"></span>
-  <span class="dot" onclick="currentSlide(3)"></span>
-</div> -->
-  
-    <form class="login-form" >
+      <form class="login-form" >
     <select name="country" id="country" >
         <option value="">From</option>
         <?php
@@ -366,37 +303,14 @@ img { position: absolute; left: 50%; top: 50%;  margin: -63px 0 0 -182px;}
             <option value="">Select Date First</option>
             
             //<?php 
-//    // connecting to DB
-//            if(empty($_GET['time'])){
-//    $con=  mysqli_connect('localhost','root','bd13011996','ticketbooking');
-//    // enable hebrew input
-//    mysqli_set_charset($con,'utf8');
-//    // read the city table from DB
-//    $sql = mysqli_query($con,"SELECT date FROM date");
-//    
-//    while ($row = mysqli_fetch_array($sql)){
-//    // creating temporary variable for each row
-//    $city1=$row["date"];
-//    //assigning a value to each option in dropdown list
-//    echo "<option value=\"$city1\"> $city1 </option>";
-//            }}
-//    ?>
-        <!--<option value="">Select time First</option>-->
+    ?>
+        
     </select>
         <input type="submit" class="button" name="insert" value="Confirm" />
           </form>
   </div>
 </div>
-<!--    <select name="type" id="type">
-        <option value="">Select Time First</option>
-    </select>
-    <select name="bus" id="bus">
-        <option value="">Select Type First</option>
-    </select>
-    <select name="seat" id="seat">
-        <option value="">Select Bus First</option>
-    </select>
-     <input type="submit" class="button" name="insert" value="Confirm" />-->
+
     </div>
 
           
@@ -416,18 +330,7 @@ img { position: absolute; left: 50%; top: 50%;  margin: -63px 0 0 -182px;}
 include('dbConfig.php');
 
     
-    //echo '<script>window.location="PatientSelect.php"</script>';
-//$query = $db->query("SELECT date,date FROM date");
-//    
-//    //Count total number of rows
-//$rowCount = $query->num_rows;
-//    
-//    //Display cities list
-//    if($rowCount > 0){
-//        echo '<option value="">Select Date</option>';
-//        while($row = $query->fetch_assoc()){ 
-//            echo '<option value="'.$row['date'].'">'.$row['date'].'</option>';
-//    }}
+
   
 
 if($_GET){
@@ -450,15 +353,9 @@ if($_GET){
         $bus_id=$_GET['type'];
         $time=$_GET['time'];
         
-        $t=($_POST["route_id"]);
+       // $t=($_POST["route_id"]);
         $route_id=$_GET['route'];
-    //global $t;
-//    $query1 = $db->query("SELECT route_id FROM intermediate_station WHERE station_id = '$station_id'");
-//    $rowCount1 = $query1->num_rows;
-//    if($rowCount1>0){
-//    $row1 = $query1->fetch_assoc();
-//    $route_id=$row1["route_id"];}
-//    else{$d="167";}
+
    
     $_SESSION['station_id'] = $station_id;
     $_SESSION['bus_id'] = $bus_id;
